@@ -1,0 +1,8 @@
+{
+  "name": "opentribes/core",
+  "autoload": {
+    "PSR-4":{
+      "OpenTribes\\Core\\": "src/"
+    }
+  }
+}
