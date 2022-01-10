@@ -1,8 +1,16 @@
 {
   "name": "opentribes/core",
   "autoload": {
-    "PSR-4":{
+    "psr-4":{
       "OpenTribes\\Core\\": "src/"
     }
+  },
+"autoload-dev": {
+  "psr-4": {
+    "OpenTribes\\Core\\Tests\\": "tests/"
+  }
+},
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
   }
 }
