@@ -18,8 +18,10 @@ final class ViewBuildingSlotsUseCaseTest extends TestCase
     public function testSlotsAreNotExisting(): void
     {
         $buildingRepository = new MockBuildingRepository();
-        $useCase = new DisplayBuildingSlots($buildingRepository);
+
         $message = new MockDisplayBuildingSlotsMessage();
+
+        $useCase = new DisplayBuildingSlots($buildingRepository);
         $useCase->execute($message);
 
         $this->assertEmpty($message->getSlots());
@@ -29,8 +31,10 @@ final class ViewBuildingSlotsUseCaseTest extends TestCase
     public function testCanViewSlots(): void
     {
         $buildingRepository = new MockBuildingRepository();
-        $useCase = new DisplayBuildingSlots($buildingRepository);
+
         $message = new MockDisplayBuildingSlotsMessage(2);
+
+        $useCase = new DisplayBuildingSlots($buildingRepository);
         $useCase->execute($message);
 
         $this->assertNotEmpty($message->getSlots());
@@ -43,8 +47,9 @@ final class ViewBuildingSlotsUseCaseTest extends TestCase
 
         $buildingRepository = new MockBuildingRepository([$building]);
 
-        $useCase = new DisplayBuildingSlots($buildingRepository);
         $message = new MockDisplayBuildingSlotsMessage(2);
+
+        $useCase = new DisplayBuildingSlots($buildingRepository);
         $useCase->execute($message);
 
         $this->assertNotEmpty($message->getSlots());
@@ -52,7 +57,6 @@ final class ViewBuildingSlotsUseCaseTest extends TestCase
         $firstSlot = $message->getSlots()[0];
         $this->assertNotEmpty($firstSlot->getBuilding());
     }
-
 
 
 }
