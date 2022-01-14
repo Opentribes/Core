@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace OpenTribes\Core\Repository;
+namespace OpenTribes\Core\Entity;
 
-use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Utils\AbstractCollection;
 
 final class BuildingCollection extends AbstractCollection
