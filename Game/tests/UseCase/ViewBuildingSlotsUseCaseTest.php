@@ -7,6 +7,8 @@ use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Tests\Mock\Message\MockDisplayBuildingSlotsMessage;
 use OpenTribes\Core\Tests\Mock\Repository\MockBuildingRepository;
 use OpenTribes\Core\UseCase\DisplayBuildingSlots;
+use OpenTribes\Core\View\BuildingView;
+use OpenTribes\Core\View\SlotView;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -43,7 +45,7 @@ final class ViewBuildingSlotsUseCaseTest extends TestCase
 
     public function testCanViewSlotsWithBuilding(): void
     {
-        $building = new Building(0);
+        $building = new Building("Test",0);
 
         $buildingRepository = new MockBuildingRepository([$building]);
 
@@ -51,12 +53,9 @@ final class ViewBuildingSlotsUseCaseTest extends TestCase
 
         $useCase = new DisplayBuildingSlots($buildingRepository);
         $useCase->execute($message);
-
-        $this->assertNotEmpty($message->getSlots());
-        $this->assertCount(2, $message->getSlots());
-        $firstSlot = $message->getSlots()[0];
-        $this->assertNotEmpty($firstSlot->getBuilding());
+        /** @var SlotView $firstSlot */
+        $firstSlot = $message->getSlots()->first();
+        $this->assertInstanceOf(BuildingView::class,$firstSlot->building);
     }
-
 
 }

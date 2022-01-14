@@ -3,10 +3,11 @@
 namespace OpenTribes\Core\Message;
 
 use OpenTribes\Core\View\SlotView;
+use OpenTribes\Core\View\SlotViewCollection;
 
 interface DisplayBuildingSlotsMessage
 {
-    public function getSlots(): array;
+    public function getSlots(): SlotViewCollection;
 
     public function getMaximumSlotNumber(): int;
 

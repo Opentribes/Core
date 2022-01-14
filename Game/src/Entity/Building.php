@@ -6,7 +6,7 @@ namespace OpenTribes\Core\Entity;
 
 final class Building
 {
-    public function __construct(private int $slotNumber)
+    public function __construct(private string $name,private int $slotNumber)
     {
     }
 
@@ -17,4 +17,13 @@ final class Building
     {
         return $this->slotNumber;
     }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
 }

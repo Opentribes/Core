@@ -4,6 +4,7 @@ namespace OpenTribes\Core\UseCase;
 
 use OpenTribes\Core\Message\DisplayBuildingSlotsMessage;
 use OpenTribes\Core\Repository\BuildingRepository;
+use OpenTribes\Core\View\BuildingView;
 use OpenTribes\Core\View\SlotView;
 
 final class DisplayBuildingSlots
@@ -22,7 +23,7 @@ final class DisplayBuildingSlots
             $slotView = new SlotView();
             $building = $buildingCollection->fromSlot($slotCounter);
             if ($building) {
-                $slotView->setBuilding($building);
+                $slotView->building = BuildingView::fromEntity($building);
             }
             $message->addSlot($slotView);
         }

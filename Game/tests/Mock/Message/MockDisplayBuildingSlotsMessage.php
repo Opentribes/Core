@@ -5,19 +5,21 @@ namespace OpenTribes\Core\Tests\Mock\Message;
 
 use OpenTribes\Core\Message\DisplayBuildingSlotsMessage;
 use OpenTribes\Core\View\SlotView;
+use OpenTribes\Core\View\SlotViewCollection;
 
 class MockDisplayBuildingSlotsMessage implements DisplayBuildingSlotsMessage
 {
-    private array $slotViews = [];
+    private SlotViewCollection $slotViews;
 
     public function __construct(
         private int $maximumSlotNumber = 0,
         private int $locationX = 0,
         private int $locationY = 0
     ) {
+        $this->slotViews = new SlotViewCollection();
     }
 
-    public function getSlots(): array
+    public function getSlots(): SlotViewCollection
     {
         return $this->slotViews;
     }
