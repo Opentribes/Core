@@ -10,7 +10,7 @@ final class BuildingCollection extends AbstractCollection
 {
     public function fromSlot(int $slotNumber): ?Building
     {
-        $result = $this->filter(function ($building) use ($slotNumber) {
+        $result = $this->filter(function (Building $building) use ($slotNumber) {
             return $building->getSlotNumber() === $slotNumber;
         });
 
