@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @coversDefaultClass \OpenTribes\Core\UseCase\DisplayBuildingSlots
  */
-final class ViewBuildingSlotsUseCaseTest extends TestCase
+final class DisplayBuildingSlotsTest extends TestCase
 {
 
     public function testSlotsAreNotExisting(): void
