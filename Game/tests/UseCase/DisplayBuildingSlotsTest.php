@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenTribes\Core\Tests;
+namespace OpenTribes\Core\Tests\UseCase;
 
 
 use OpenTribes\Core\Entity\Building;
