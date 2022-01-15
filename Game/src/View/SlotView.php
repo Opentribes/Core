@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\View;
 
-use OpenTribes\Core\Utils\Collectable;
+use OpenTribes\Core\Utils\Collectible;
 
-final class SlotView implements Collectable
+final class SlotView implements Collectible
 {
     public ?BuildingView $building = null;
 }

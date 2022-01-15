@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace OpenTribes\Core\View;
 
 use OpenTribes\Core\Entity\Building;
-use OpenTribes\Core\Utils\Collectable;
+use OpenTribes\Core\Utils\Collectible;
 
-final class BuildingView implements Collectable
+final class BuildingView implements Collectible
 {
     public string $name = '';
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Entity;
 
-use OpenTribes\Core\Utils\Collectable;
+use OpenTribes\Core\Utils\Collectible;
 
-final class Building implements Collectable
+final class Building implements Collectible
 {
     private int $slotNumber = 0;
 

@@ -9,7 +9,7 @@ abstract class Collection implements \Iterator, \Countable, \ArrayAccess
     private int $position = 0;
 
     /**
-     * @param array<Collectable> $collection
+     * @param array<Collectible> $collection
      */
     public function __construct(protected array $collection = [])
     {
@@ -84,7 +84,7 @@ abstract class Collection implements \Iterator, \Countable, \ArrayAccess
     }
 
     /**
-     * @return array<Collectable>
+     * @return array<Collectible>
      */
     public function filter(callable $function): array
     {

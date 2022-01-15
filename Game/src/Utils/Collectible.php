@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Utils;
 
-interface Collectable
+interface Collectible
 {
 }
