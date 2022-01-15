@@ -45,8 +45,8 @@ final class DisplayBuildingSlotsTest extends TestCase
 
     public function testCanViewSlotsWithBuilding(): void
     {
-        $building = new Building("Test",0);
-
+        $building = new Building("Test");
+        $building->setSlotNumber(0);
         $buildingRepository = new MockBuildingRepository([$building]);
 
         $message = new MockDisplayBuildingSlotsMessage(2);

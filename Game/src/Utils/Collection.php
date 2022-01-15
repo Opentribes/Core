@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Utils;
 
-
-abstract class AbstractCollection implements \Iterator, \Countable, \ArrayAccess
+abstract class Collection implements \Iterator, \Countable, \ArrayAccess
 {
     private int $position = 0;
 
+    /**
+     * @param array<Collectable> $collection
+     */
     public function __construct(protected array $collection = [])
     {
         $this->rewind();
@@ -81,9 +83,11 @@ abstract class AbstractCollection implements \Iterator, \Countable, \ArrayAccess
         return array_pop($collection);
     }
 
+    /**
+     * @return array<Collectable>
+     */
     public function filter(callable $function): array
     {
         return array_filter($this->collection, $function);
     }
-
 }

@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace OpenTribes\Core\View;
 
-use OpenTribes\Core\Utils\AbstractCollection;
+use OpenTribes\Core\Utils\Collection;
 
-final class BuildingViewCollection extends AbstractCollection
+final class BuildingViewCollection extends Collection
 {
-
 }

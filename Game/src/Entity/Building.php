@@ -4,26 +4,28 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Entity;
 
-final class Building
+use OpenTribes\Core\Utils\Collectable;
+
+final class Building implements Collectable
 {
-    public function __construct(private string $name,private int $slotNumber)
+    private int $slotNumber = 0;
+
+    public function __construct(private string $name)
     {
     }
 
-    /**
-     * @return int
-     */
+    public function setSlotNumber(int $slotNumber): void
+    {
+        $this->slotNumber = $slotNumber;
+    }
+
     public function getSlotNumber(): int
     {
         return $this->slotNumber;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
-
 }

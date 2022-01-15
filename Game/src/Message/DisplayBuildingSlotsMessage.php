@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OpenTribes\Core\Message;
 
 use OpenTribes\Core\View\SlotView;
@@ -16,5 +18,4 @@ interface DisplayBuildingSlotsMessage
     public function getLocationX(): int;
 
     public function getLocationY(): int;
-
 }

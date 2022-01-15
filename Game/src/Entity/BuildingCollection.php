@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Entity;
 
-use OpenTribes\Core\Utils\AbstractCollection;
+use OpenTribes\Core\Utils\Collection;
 
-final class BuildingCollection extends AbstractCollection
+final class BuildingCollection extends Collection
 {
     public function fromSlot(int $slotNumber): ?Building
     {
-        $result = $this->filter(function (Building $building) use ($slotNumber) {
-            return $building->getSlotNumber() === $slotNumber;
-        });
+        $result = $this->filter(
+            static function (Building $building) use ($slotNumber) {
+                return $building->getSlotNumber() === $slotNumber;
+            }
+        );
 
         return array_shift($result);
     }

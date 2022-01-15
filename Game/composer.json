@@ -1,5 +1,7 @@
 {
   "name": "opentribes/core",
+  "license": "MIT",
+  "description": "Open Tribes is an Open Source Strategy browser game",
   "autoload": {
     "psr-4":{
       "OpenTribes\\Core\\": "src/"
@@ -10,6 +12,9 @@
     "OpenTribes\\Core\\Tests\\": "tests/"
   }
 },
+  "require": {
+    "php": "^8.1"
+  },
   "require-dev": {
     "phpunit/phpunit": "^9.5",
     "nunomaduro/phpinsights": "^2.1",
@@ -20,5 +25,9 @@
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "composer/package-versions-deprecated": true
     }
+  },
+  "scripts": {
+    "phpinsights": "vendor/bin/phpinsights --config-path=phpinsights.php -s",
+    "fix-style": "vendor/bin/phpinsights --config-path=phpinsights.php -s --fix"
   }
 }

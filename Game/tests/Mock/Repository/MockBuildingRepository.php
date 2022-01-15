@@ -18,4 +18,9 @@ final class MockBuildingRepository implements BuildingRepository
         return new BuildingCollection($this->collection);
     }
 
+    public function findAvailable(): BuildingCollection
+    {
+        return new BuildingCollection($this->collection);
+    }
+
 }

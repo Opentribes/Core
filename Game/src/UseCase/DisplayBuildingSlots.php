@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OpenTribes\Core\UseCase;
 
 use OpenTribes\Core\Message\DisplayBuildingSlotsMessage;
@@ -19,7 +21,8 @@ final class DisplayBuildingSlots
             $message->getLocationX(),
             $message->getLocationY()
         );
-        for ($slotCounter = 0; $slotCounter < $message->getMaximumSlotNumber(); $slotCounter++) {
+        $maxSlots = $message->getMaximumSlotNumber();
+        for ($slotCounter = 0; $slotCounter < $maxSlots; $slotCounter++) {
             $slotView = new SlotView();
             $building = $buildingCollection->fromSlot($slotCounter);
             if ($building) {

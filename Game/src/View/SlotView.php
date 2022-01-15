@@ -1,9 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace OpenTribes\Core\View;
 
-final class SlotView
+use OpenTribes\Core\Utils\Collectable;
+
+final class SlotView implements Collectable
 {
-    public ?BuildingView $building;
+    public ?BuildingView $building = null;
 }
