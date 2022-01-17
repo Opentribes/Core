@@ -58,4 +58,18 @@ final class DisplayBuildingSlotsTest extends TestCase
         $this->assertInstanceOf(BuildingView::class,$firstSlot->building);
     }
 
+    public function testPlayDoNotOwnCity(): void
+    {
+        $building = new Building("Test");
+        $building->setSlotNumber(0);
+        $buildingRepository = new MockBuildingRepository([$building],false);
+
+        $message = new MockDisplayBuildingSlotsMessage(2);
+
+        $useCase = new DisplayBuildingSlots($buildingRepository);
+        $useCase->execute($message);
+
+        $this->assertTrue($message->showOnlyCityData());
+    }
+
 }

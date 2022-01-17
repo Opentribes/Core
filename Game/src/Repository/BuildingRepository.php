@@ -14,4 +14,6 @@ interface BuildingRepository
     ): BuildingCollection;
 
     public function findAvailable(): BuildingCollection;
+
+    public function userCanBuildAtLocation(int $locationX, int $locationY, string $username): bool;
 }

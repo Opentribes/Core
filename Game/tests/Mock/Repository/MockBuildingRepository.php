@@ -9,7 +9,7 @@ use OpenTribes\Core\Repository\BuildingRepository;
 
 final class MockBuildingRepository implements BuildingRepository
 {
-    public function __construct(private array $collection = [])
+    public function __construct(private array $collection = [],private bool $userCanBuildAtLocation = true)
     {
     }
 
@@ -22,5 +22,11 @@ final class MockBuildingRepository implements BuildingRepository
     {
         return new BuildingCollection($this->collection);
     }
+
+    public function userCanBuildAtLocation(int $locationX, int $locationY, string $username): bool
+    {
+       return $this->userCanBuildAtLocation;
+    }
+
 
 }

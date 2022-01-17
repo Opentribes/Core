@@ -10,11 +10,13 @@ use OpenTribes\Core\View\SlotViewCollection;
 class MockDisplayBuildingSlotsMessage implements DisplayBuildingSlotsMessage
 {
     private SlotViewCollection $slotViews;
+    private bool $shoOnlyCityData = false;
 
     public function __construct(
         private int $maximumSlotNumber = 0,
         private int $locationX = 0,
-        private int $locationY = 0
+        private int $locationY = 0,
+        private string $username = 'Test'
     ) {
         $this->slotViews = new SlotViewCollection();
     }
@@ -50,4 +52,20 @@ class MockDisplayBuildingSlotsMessage implements DisplayBuildingSlotsMessage
     {
         $this->slotViews[] = $slotView;
     }
+
+    public function showOnlyCityData(): bool
+    {
+        return $this->shoOnlyCityData;
+    }
+
+    public function getUserName(): string
+    {
+        return $this->username;
+    }
+
+    public function enableCityDataOnly(): void
+    {
+        $this->shoOnlyCityData = true;
+    }
+
 }

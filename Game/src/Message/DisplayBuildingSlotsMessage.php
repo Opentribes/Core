@@ -18,4 +18,8 @@ interface DisplayBuildingSlotsMessage
     public function getLocationX(): int;
 
     public function getLocationY(): int;
+
+    public function getUserName(): string;
+
+    public function enableCityDataOnly(): void;
 }

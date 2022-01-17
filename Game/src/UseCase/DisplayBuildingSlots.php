@@ -17,6 +17,15 @@ final class DisplayBuildingSlots
 
     public function execute(DisplayBuildingSlotsMessage $message): void
     {
+        if(!$this->buildingRepository->userCanBuildAtLocation(
+            $message->getLocationX(),
+            $message->getLocationY(),
+            $message->getUserName()
+        )){
+            $message->enableCityDataOnly();
+            return;
+        }
+
         $buildingCollection = $this->buildingRepository->findAllAtLocation(
             $message->getLocationX(),
             $message->getLocationY()
