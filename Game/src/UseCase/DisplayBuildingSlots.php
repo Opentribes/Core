@@ -17,15 +17,21 @@ final class DisplayBuildingSlots
 
     public function execute(DisplayBuildingSlotsMessage $message): void
     {
-        if(!$this->buildingRepository->userCanBuildAtLocation(
+        if (! $this->buildingRepository->userCanBuildAtLocation(
             $message->getLocationX(),
             $message->getLocationY(),
             $message->getUserName()
-        )){
+        )) {
             $message->enableCityDataOnly();
             return;
         }
 
+        $this->fillSlots($message);
+    }
+
+    public function fillSlots(
+        DisplayBuildingSlotsMessage $message,
+    ): void {
         $buildingCollection = $this->buildingRepository->findAllAtLocation(
             $message->getLocationX(),
             $message->getLocationY()
@@ -33,7 +39,7 @@ final class DisplayBuildingSlots
         $maxSlots = $message->getMaximumSlotNumber();
         for ($slotCounter = 0; $slotCounter < $maxSlots; $slotCounter++) {
             $slotView = new SlotView();
-            $building = $buildingCollection->fromSlot($slotCounter);
+            $building = $buildingCollection->fromSlot((string) $slotCounter);
             if ($building) {
                 $slotView->building = BuildingView::fromEntity($building);
             }

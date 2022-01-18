@@ -8,12 +8,12 @@ use OpenTribes\Core\Utils\Collection;
 
 final class BuildingCollection extends Collection
 {
-    public function fromSlot(int $slotNumber): ?Building
+    public function fromSlot(string $slotNumber): ?Building
     {
         /** @var array<Building> $result */
         $result = $this->filter(
             static function (Building $building) use ($slotNumber) {
-                return $building->getSlotNumber() === $slotNumber;
+                return $building->getSlot() === $slotNumber;
             }
         );
 

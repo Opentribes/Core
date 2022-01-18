@@ -10,11 +10,12 @@ use OpenTribes\Core\Utils\Collectible;
 final class BuildingView implements Collectible
 {
     public string $name = '';
-
+    public int $level = 0;
     public static function fromEntity(Building $building): self
     {
         $view = new self();
         $view->name = $building->getName();
+        $view->level = $building->getLevel();
         return $view;
     }
 }

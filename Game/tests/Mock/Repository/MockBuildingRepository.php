@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Tests\Mock\Repository;
 
+use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Entity\BuildingCollection;
 use OpenTribes\Core\Repository\BuildingRepository;
 
@@ -26,6 +27,11 @@ final class MockBuildingRepository implements BuildingRepository
     public function userCanBuildAtLocation(int $locationX, int $locationY, string $username): bool
     {
        return $this->userCanBuildAtLocation;
+    }
+
+    public function add(Building $building):void
+    {
+       $this->collection[]=$building;
     }
 
 
