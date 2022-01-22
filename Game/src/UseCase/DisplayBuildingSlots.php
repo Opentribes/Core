@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\UseCase;
 
+use OpenTribes\Core\Enum\CitySlots;
 use OpenTribes\Core\Message\DisplayBuildingSlotsMessage;
 use OpenTribes\Core\Repository\BuildingRepository;
 use OpenTribes\Core\View\BuildingView;
@@ -36,10 +37,9 @@ final class DisplayBuildingSlots
             $message->getLocationX(),
             $message->getLocationY()
         );
-        $maxSlots = $message->getMaximumSlotNumber();
-        for ($slotCounter = 0; $slotCounter < $maxSlots; $slotCounter++) {
+        foreach (CitySlots::cases() as $citySlot) {
             $slotView = new SlotView();
-            $building = $buildingCollection->fromSlot((string) $slotCounter);
+            $building = $buildingCollection->fromSlot($citySlot->value);
             if ($building) {
                 $slotView->building = BuildingView::fromEntity($building);
             }

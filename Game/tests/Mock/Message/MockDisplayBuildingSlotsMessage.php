@@ -13,7 +13,6 @@ class MockDisplayBuildingSlotsMessage implements DisplayBuildingSlotsMessage
     private bool $shoOnlyCityData = false;
 
     public function __construct(
-        private int $maximumSlotNumber = 0,
         private int $locationX = 0,
         private int $locationY = 0,
         private string $username = 'Test'
@@ -40,12 +39,6 @@ class MockDisplayBuildingSlotsMessage implements DisplayBuildingSlotsMessage
     public function getLocationY(): int
     {
         return $this->locationY;
-    }
-
-
-    public function getMaximumSlotNumber(): int
-    {
-        return $this->maximumSlotNumber;
     }
 
     public function addSlot(SlotView $slotView): void

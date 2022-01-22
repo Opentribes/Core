@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 final class DisplayBuildingSlotsTest extends TestCase
 {
 
-    public function testSlotsAreNotExisting(): void
+    public function testCanViewSlots(): void
     {
         $buildingRepository = new MockBuildingRepository();
 
@@ -26,41 +26,29 @@ final class DisplayBuildingSlotsTest extends TestCase
         $useCase = new DisplayBuildingSlots($buildingRepository);
         $useCase->execute($message);
 
-        $this->assertEmpty($message->getSlots());
-    }
-
-
-    public function testCanViewSlots(): void
-    {
-        $buildingRepository = new MockBuildingRepository();
-
-        $message = new MockDisplayBuildingSlotsMessage(2);
-
-        $useCase = new DisplayBuildingSlots($buildingRepository);
-        $useCase->execute($message);
-
         $this->assertNotEmpty($message->getSlots());
-        $this->assertCount(2, $message->getSlots());
+        $this->assertCount(5, $message->getSlots());
     }
 
     public function testCanViewSlotsWithBuilding(): void
     {
-        $building = new Building("Test");
-        $building->setSlot(0);
+        $building = new Building("Test",30);
+        $building->setSlot(1);
         $buildingRepository = new MockBuildingRepository([$building]);
 
-        $message = new MockDisplayBuildingSlotsMessage(2);
+        $message = new MockDisplayBuildingSlotsMessage();
 
         $useCase = new DisplayBuildingSlots($buildingRepository);
         $useCase->execute($message);
         /** @var SlotView $firstSlot */
         $firstSlot = $message->getSlots()->first();
+
         $this->assertInstanceOf(BuildingView::class,$firstSlot->building);
     }
 
     public function testPlayDoNotOwnCity(): void
     {
-        $building = new Building("Test");
+        $building = new Building("Test",30);
         $building->setSlot(0);
         $buildingRepository = new MockBuildingRepository([$building],false);
 

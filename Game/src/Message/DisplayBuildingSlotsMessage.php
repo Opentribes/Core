@@ -11,8 +11,6 @@ interface DisplayBuildingSlotsMessage
 {
     public function getSlots(): SlotViewCollection;
 
-    public function getMaximumSlotNumber(): int;
-
     public function addSlot(SlotView $slotView): void;
 
     public function getLocationX(): int;

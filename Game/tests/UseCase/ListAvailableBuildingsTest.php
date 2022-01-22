@@ -15,9 +15,8 @@ final class ListAvailableBuildingsTest extends TestCase
 {
     public function testNoBuildingsAreAvailable(): void
     {
-        $message = new MockListAvailableBuildingsMessage();
         $mockBuildingRepository = new MockBuildingRepository();
-
+        $message = new MockListAvailableBuildingsMessage();
         $useCase = new ListAvailableBuildings($mockBuildingRepository);
         $useCase->execute($message);
         $this->assertEmpty($message->getBuildings());
@@ -25,9 +24,8 @@ final class ListAvailableBuildingsTest extends TestCase
 
     public function testAllBuildingsAreShown(): void
     {
+        $mockBuildingRepository = new MockBuildingRepository([new Building('test',30),new Building('test2',30)]);
         $message = new MockListAvailableBuildingsMessage();
-
-        $mockBuildingRepository = new MockBuildingRepository([new Building('test1',1),new Building('Test 2',)]);
         $useCase = new ListAvailableBuildings($mockBuildingRepository);
         $useCase->execute($message);
         $this->assertSame(2, $message->getBuildings()->count());
