@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Entity;
 
+use OpenTribes\Core\Enum\BuildStatus;
 use OpenTribes\Core\Utils\Collectible;
 
 final class Building implements Collectible
@@ -12,8 +13,11 @@ final class Building implements Collectible
     private int $level = 0;
     private int $locationX = 0;
     private int $locationY = 0;
-    public function __construct(private string $name)
+    private BuildStatus $status;
+
+    public function __construct(private string $name, private int $maximumLevel)
     {
+        $this->status = BuildStatus::default;
     }
 
     public function setSlot(string $slot): void
@@ -59,5 +63,20 @@ final class Building implements Collectible
     public function setLevel(int $level): void
     {
         $this->level = $level;
+    }
+
+    public function getStatus(): BuildStatus
+    {
+        return $this->status;
+    }
+
+    public function setStatus(BuildStatus $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function getMaximumLevel(): int
+    {
+        return $this->maximumLevel;
     }
 }

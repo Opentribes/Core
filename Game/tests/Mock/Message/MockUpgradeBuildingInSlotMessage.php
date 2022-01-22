@@ -11,7 +11,7 @@ final class MockUpgradeBuildingInSlotMessage implements UpgradeBuildingInSlotMes
     private BuildingView $buildingView;
 
     public function __construct(private string $name = ''){
-
+        $this->buildingView = new BuildingView();
     }
     public function getLocationX(): int
     {

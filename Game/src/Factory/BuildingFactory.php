@@ -10,6 +10,6 @@ final class BuildingFactory
 {
     public function create(string $buildingName): Building
     {
-        return new Building($buildingName);
+        return new Building($buildingName, 30);
     }
 }

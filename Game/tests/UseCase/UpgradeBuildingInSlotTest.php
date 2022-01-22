@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OpenTribes\Core\Tests\UseCase;
 
 use OpenTribes\Core\Entity\Building;
+use OpenTribes\Core\Enum\BuildStatus;
 use OpenTribes\Core\Factory\BuildingFactory;
 use OpenTribes\Core\Tests\Mock\Message\MockUpgradeBuildingInSlotMessage;
 use OpenTribes\Core\Tests\Mock\Repository\MockBuildingRepository;
@@ -13,30 +14,49 @@ use PHPUnit\Framework\TestCase;
 
 final class UpgradeBuildingInSlotTest extends TestCase
 {
+
     public function testCanUpgradeBuildingOnSlot(): void
     {
-        $lumberjack = new Building('lumberjack');
+        $lumberjack = new Building('lumberjack',30);
         $lumberjack->setSlot('1');
-        $buildingRepository = new MockBuildingRepository([$lumberjack]);
 
+        $buildingFactory = new BuildingFactory();
+        $buildingRepository = new MockBuildingRepository([$lumberjack]);
         $message = new MockUpgradeBuildingInSlotMessage();
-        $factory = new BuildingFactory();
-        $useCase = new UpgradeBuildingInSlot($buildingRepository,$factory);
+
+        $useCase = new UpgradeBuildingInSlot($buildingRepository,$buildingFactory);
         $useCase->execute($message);
         $this->assertNotEmpty($message->getBuilding());
-        $this->assertSame(1, $message->getBuilding()->level);
+        $this->assertSame(BuildStatus::UPGRADING, $message->getBuilding()->status);
     }
 
-    public function testCanCreateNewBuildingOnSlot(): void
+    public function testCanBuildNewBuildingOnSlot(): void
     {
 
         $buildingRepository = new MockBuildingRepository();
-        $factory = new BuildingFactory();
+        $buildingFactory = new BuildingFactory();
         $message = new MockUpgradeBuildingInSlotMessage('lumberjack');
-        $useCase = new UpgradeBuildingInSlot($buildingRepository,$factory);
+        $useCase = new UpgradeBuildingInSlot($buildingRepository,$buildingFactory);
+        $useCase->execute($message);
+
+        $this->assertNotEmpty($message->getBuilding());
+        $this->assertSame(BuildStatus::UPGRADING, $message->getBuilding()->status);
+    }
+    public function testMaximumLevelReached(): void
+    {
+        $lumberjack = new Building('lumberjack',30);
+        $lumberjack->setSlot('1');
+        $lumberjack->setLevel(30);
+
+
+        $buildingFactory = new BuildingFactory();
+        $buildingRepository = new MockBuildingRepository([$lumberjack]);
+        $message = new MockUpgradeBuildingInSlotMessage();
+
+        $useCase = new UpgradeBuildingInSlot($buildingRepository,$buildingFactory);
         $useCase->execute($message);
         $this->assertNotEmpty($message->getBuilding());
-        $this->assertSame(1, $message->getBuilding()->level);
+        $this->assertSame(BuildStatus::default, $message->getBuilding()->status);
     }
 
     public function testCanStoreUpgradedBuilding(): void

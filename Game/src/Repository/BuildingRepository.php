@@ -16,7 +16,11 @@ interface BuildingRepository
 
     public function findAvailable(): BuildingCollection;
 
-    public function userCanBuildAtLocation(int $locationX, int $locationY, string $username): bool;
+    public function userCanBuildAtLocation(
+        int $locationX,
+        int $locationY,
+        string $username
+    ): bool;
 
-    public function add(Building $buildingAtSlot): void;
+    public function add(Building $building): void;
 }
