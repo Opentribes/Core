@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\UseCase;
 
+use OpenTribes\Core\Enum\BuildStatus;
 use OpenTribes\Core\Exception\InvalidDowngrade;
 use OpenTribes\Core\Message\DowngradeBuildingInSlotMessage;
 use OpenTribes\Core\Repository\BuildingRepository;
@@ -25,7 +26,7 @@ final class DowngradeBuildingInSlot
         if (! $buildingAtSlot) {
             throw new InvalidDowngrade();
         }
-        $buildingAtSlot->downgrade();
+        $buildingAtSlot->setStatus(BuildStatus::DOWNGRADING);
         $message->setBuilding(BuildingView::fromEntity($buildingAtSlot));
         $this->buildingRepository->add($buildingAtSlot);
     }
