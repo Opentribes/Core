@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use NunoMaduro\PhpInsights\Domain\Sniffs\ForbiddenSetterSniff;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\DiscourageGotoSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ForbiddenPublicPropertySniff;
 
 return [
@@ -66,6 +67,7 @@ return [
     'remove' => [
         ForbiddenPublicPropertySniff::class,
         ForbiddenSetterSniff::class,
+        DiscourageGotoSniff::class,
     ],
 
     'config' => [
