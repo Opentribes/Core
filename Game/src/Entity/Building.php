@@ -9,16 +9,18 @@ use OpenTribes\Core\Utils\Collectible;
 
 final class Building implements Collectible
 {
+    private int $id;
     private string $slot = '';
     private int $level = 0;
     private int $locationX = 0;
     private int $locationY = 0;
     private BuildStatus $status;
-
+    private \DateTimeInterface $createdAt;
     public function __construct(private string $name, private int $maximumLevel)
     {
         $this->status = BuildStatus::default;
     }
+
 
     public function setSlot(string $slot): void
     {
