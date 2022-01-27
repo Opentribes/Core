@@ -7,6 +7,6 @@ namespace OpenTribes\Core\Enum;
 enum BuildStatus: string
 {
     case UPGRADING = 'upgrading';
-    case DOWNGRADING = 'downgraiding';
+    case DOWNGRADING = 'downgrading';
     case default = 'default';
 }
