@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use OpenTribes\Core\Enum\BuildStatus;
 use OpenTribes\Core\Utils\Collectible;
 
@@ -14,13 +16,15 @@ final class Building implements Collectible
     private int $level = 0;
     private int $locationX = 0;
     private int $locationY = 0;
+    private string $username;
     private BuildStatus $status;
-    private \DateTimeInterface $createdAt;
+    private DateTimeInterface $createdAt;
+
     public function __construct(private string $name, private int $maximumLevel)
     {
         $this->status = BuildStatus::default;
+        $this->createdAt = new DateTime();
     }
-
 
     public function setSlot(string $slot): void
     {
@@ -81,4 +85,48 @@ final class Building implements Collectible
     {
         return $this->maximumLevel;
     }
+
+    public function getCreatedAt(): DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeInterface $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+
 }
