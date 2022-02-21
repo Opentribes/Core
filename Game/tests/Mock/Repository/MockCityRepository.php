@@ -1,0 +1,50 @@
+<?php
+declare(strict_types=1);
+
+namespace OpenTribes\Core\Tests\Mock\Repository;
+
+use OpenTribes\Core\Entity\City;
+use OpenTribes\Core\Entity\CityCollection;
+use OpenTribes\Core\Repository\CityRepository;
+use OpenTribes\Core\Utils\Location;
+
+final class MockCityRepository implements CityRepository
+{
+    private CityCollection $cities;
+    public function __construct(private int $cityCount = 0,private bool $added = false)
+    {
+        $this->cities = new CityCollection();
+    }
+
+    /**
+     * @param CityCollection $cities
+     */
+    public function setCities(CityCollection $cities): void
+    {
+        $this->cities = $cities;
+    }
+
+    public function add(City $city): bool
+    {
+        return $this->added;
+    }
+
+    public function countByUsername(string $username): int
+    {
+        return  $this->cityCount;
+    }
+
+    public function countAtLocation(Location $location): int
+    {
+
+        $cities = $this->cities->filter(function (City $city) use($location){
+            $cityLocation = $city->getLocation();
+           return$cityLocation->getX() === $location->getX() &&
+               $cityLocation->getY() === $location->getY();
+        });
+
+        return count($cities);
+    }
+
+
+}
