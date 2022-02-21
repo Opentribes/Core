@@ -8,7 +8,7 @@ use OpenTribes\Core\Utils\Location;
 
 final class SimpleLocationFinder implements LocationFinder
 {
-    public function __construct(private CityRepository $cityRepository){
+    public function __construct(private CityRepository $cityRepository,private int $maxWidth){
 
     }
     public function findUnusedLocation(): Location
@@ -24,7 +24,13 @@ final class SimpleLocationFinder implements LocationFinder
             if($countCitiesAtLocation !== 0){
                  $location = null;
             }
+
             $locationX++;
+
+            if($locationX > $this->maxWidth){
+                $locationX = 0;
+                $locationY++;
+            }
         }while(!$location);
 
 
