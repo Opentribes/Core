@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Utils;
 
-abstract class Collection implements \Iterator, \Countable, \ArrayAccess
+use Closure;
+
+abstract class Collection implements \Countable, \ArrayAccess, \Iterator
 {
     private int $position = 0;
 
@@ -86,7 +88,7 @@ abstract class Collection implements \Iterator, \Countable, \ArrayAccess
     /**
      * @return array<Collectible>
      */
-    public function filter(callable $function): array
+    public function filter(Closure $function): array
     {
         return array_filter($this->collection, $function);
     }
