@@ -20,8 +20,6 @@ final class SimpleLocationFinderTest extends TestCase
 
     public function testNextLocationFound():void
     {
-
-
         $mockCityRepository = new MockCityRepository();
         $mockCity = new City(new Location(0,0));
         $cityCollection = new CityCollection([$mockCity]);
