@@ -5,6 +5,7 @@ namespace OpenTribes\Core\Tests\Mock\Repository;
 
 use OpenTribes\Core\Entity\City;
 use OpenTribes\Core\Entity\CityCollection;
+use OpenTribes\Core\Exception\InvalidLocation;
 use OpenTribes\Core\Repository\CityRepository;
 use OpenTribes\Core\Utils\Location;
 
@@ -39,11 +40,26 @@ final class MockCityRepository implements CityRepository
 
         $cities = $this->cities->filter(function (City $city) use($location){
             $cityLocation = $city->getLocation();
-           return$cityLocation->getX() === $location->getX() &&
+           return $cityLocation->getX() === $location->getX() &&
                $cityLocation->getY() === $location->getY();
         });
 
         return count($cities);
+    }
+
+    public function findAtLocation(Location $location): City
+    {
+        $cities = $this->cities->filter(function (City $city) use($location){
+            $cityLocation = $city->getLocation();
+            return $cityLocation->getX() === $location->getX() &&
+                $cityLocation->getY() === $location->getY();
+        });
+
+        $city = current($cities);
+        if($city === false){
+            throw new InvalidLocation(sprintf("The Location X:%d/Y:%d is invalid",$location->getX(),$location->getY()));
+        }
+        return $city;
     }
 
 

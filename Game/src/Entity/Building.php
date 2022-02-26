@@ -14,9 +14,8 @@ final class Building implements Collectible
     private int $id;
     private string $slot = '';
     private int $level = 0;
-    private int $locationX = 0;
-    private int $locationY = 0;
-    private string $username;
+    private int $cityId;
+    private City $city;
     private BuildStatus $status;
     private DateTimeInterface $createdAt;
 
@@ -49,16 +48,6 @@ final class Building implements Collectible
     public function getLevel(): int
     {
         return $this->level;
-    }
-
-    public function setLocationX(int $locationX): void
-    {
-        $this->locationX = $locationX;
-    }
-
-    public function setLocationY(int $locationY): void
-    {
-        $this->locationY = $locationY;
     }
 
     public function downgrade(): void
@@ -96,37 +85,23 @@ final class Building implements Collectible
         $this->createdAt = $createdAt;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     */
     public function setId(int $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return string
-     */
-    public function getUsername(): string
+    public function getCity(): City
     {
-        return $this->username;
+        return $this->city;
     }
 
-    /**
-     * @param string $username
-     */
-    public function setUsername(string $username): void
+    public function setCity(City $city): void
     {
-        $this->username = $username;
+        $this->city = $city;
     }
-
-
 }
