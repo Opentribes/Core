@@ -9,12 +9,15 @@ use OpenTribes\Core\Enum\BuildStatus;
 use OpenTribes\Core\Factory\BuildingFactory;
 use OpenTribes\Core\Message\UpgradeBuildingInSlotMessage;
 use OpenTribes\Core\Repository\BuildingRepository;
+use OpenTribes\Core\Repository\CityRepository;
+use OpenTribes\Core\Utils\Location;
 use OpenTribes\Core\View\BuildingView;
 
 final class UpgradeBuildingInSlot
 {
     public function __construct(
         private BuildingRepository $buildingRepository,
+        private CityRepository $cityRepository,
         private BuildingFactory $buildingFactory
     ) {
     }
@@ -44,12 +47,14 @@ final class UpgradeBuildingInSlot
     private function createBuilding(
         UpgradeBuildingInSlotMessage $message
     ): Building {
+        $city = $this->cityRepository->findAtLocation(new Location($message->getLocationX(), $message->getLocationY()));
+
         $buildingInSlot = $this->buildingFactory->create(
             $message->getBuildingName()
         );
         $buildingInSlot->setSlot($message->getSlot());
-        $buildingInSlot->setLocationX($message->getLocationX());
-        $buildingInSlot->setLocationY($message->getLocationY());
+        $buildingInSlot->setCity($city);
+
         return $buildingInSlot;
     }
 }

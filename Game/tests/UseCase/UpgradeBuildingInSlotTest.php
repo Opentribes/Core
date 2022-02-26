@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace OpenTribes\Core\Tests\UseCase;
 
 use OpenTribes\Core\Entity\Building;
+use OpenTribes\Core\Entity\City;
+use OpenTribes\Core\Entity\CityCollection;
 use OpenTribes\Core\Enum\BuildStatus;
 use OpenTribes\Core\Factory\BuildingFactory;
 use OpenTribes\Core\Tests\Mock\Message\MockUpgradeBuildingInSlotMessage;
 use OpenTribes\Core\Tests\Mock\Repository\MockBuildingRepository;
+use OpenTribes\Core\Tests\Mock\Repository\MockCityRepository;
 use OpenTribes\Core\UseCase\UpgradeBuildingInSlot;
+use OpenTribes\Core\Utils\Location;
 use PHPUnit\Framework\TestCase;
 
 final class UpgradeBuildingInSlotTest extends TestCase
@@ -23,8 +27,8 @@ final class UpgradeBuildingInSlotTest extends TestCase
         $buildingFactory = new BuildingFactory();
         $buildingRepository = new MockBuildingRepository([$lumberjack]);
         $message = new MockUpgradeBuildingInSlotMessage();
-
-        $useCase = new UpgradeBuildingInSlot($buildingRepository,$buildingFactory);
+        $cityRepository = new MockCityRepository();
+        $useCase = new UpgradeBuildingInSlot($buildingRepository,$cityRepository,$buildingFactory);
         $useCase->execute($message);
         $this->assertNotEmpty($message->getBuilding());
         $this->assertSame(BuildStatus::UPGRADING, $message->getBuilding()->status);
@@ -34,9 +38,13 @@ final class UpgradeBuildingInSlotTest extends TestCase
     {
 
         $buildingRepository = new MockBuildingRepository();
+        $cityRepository = new MockCityRepository();
+        $cityRepository->setCities(new CityCollection([
+            new City(new Location(1,1))
+        ]));
         $buildingFactory = new BuildingFactory();
         $message = new MockUpgradeBuildingInSlotMessage('lumberjack');
-        $useCase = new UpgradeBuildingInSlot($buildingRepository,$buildingFactory);
+        $useCase = new UpgradeBuildingInSlot($buildingRepository,$cityRepository,$buildingFactory);
         $useCase->execute($message);
 
         $this->assertNotEmpty($message->getBuilding());
@@ -48,12 +56,12 @@ final class UpgradeBuildingInSlotTest extends TestCase
         $lumberjack->setSlot('1');
         $lumberjack->setLevel(30);
 
-
+        $cityRepository = new MockCityRepository();
         $buildingFactory = new BuildingFactory();
         $buildingRepository = new MockBuildingRepository([$lumberjack]);
         $message = new MockUpgradeBuildingInSlotMessage();
 
-        $useCase = new UpgradeBuildingInSlot($buildingRepository,$buildingFactory);
+        $useCase = new UpgradeBuildingInSlot($buildingRepository,$cityRepository,$buildingFactory);
         $useCase->execute($message);
         $this->assertNotEmpty($message->getBuilding());
         $this->assertSame(BuildStatus::default, $message->getBuilding()->status);
@@ -63,8 +71,13 @@ final class UpgradeBuildingInSlotTest extends TestCase
     {
         $buildingRepository = new MockBuildingRepository();
         $factory = new BuildingFactory();
+
+        $cityRepository = new MockCityRepository();
+        $cityRepository->setCities(new CityCollection([
+            new City(new Location(1,1))
+        ]));
         $message = new MockUpgradeBuildingInSlotMessage('lumberjack');
-        $useCase = new UpgradeBuildingInSlot($buildingRepository,$factory);
+        $useCase = new UpgradeBuildingInSlot($buildingRepository,$cityRepository,$factory);
         $useCase->execute($message);
         $this->assertNotEmpty($buildingRepository->findAllAtLocation(1,1)->fromSlot('1'));
     }
