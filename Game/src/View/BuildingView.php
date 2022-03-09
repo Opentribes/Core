@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\View;
 
-use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Enum\BuildStatus;
+use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Utils\Collectible;
 
 final class BuildingView implements Collectible

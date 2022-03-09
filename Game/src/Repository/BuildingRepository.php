@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Repository;
 
-use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Entity\BuildingCollection;
+use OpenTribes\Core\Entity\Building;
 
 interface BuildingRepository
 {

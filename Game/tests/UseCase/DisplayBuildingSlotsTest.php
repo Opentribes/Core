@@ -3,7 +3,7 @@
 namespace OpenTribes\Core\Tests\UseCase;
 
 
-use OpenTribes\Core\Entity\Building;
+use OpenTribes\Core\Tests\Mock\Entity\MockBuilding;
 use OpenTribes\Core\Tests\Mock\Message\MockDisplayBuildingSlotsMessage;
 use OpenTribes\Core\Tests\Mock\Repository\MockBuildingRepository;
 use OpenTribes\Core\UseCase\DisplayBuildingSlots;
@@ -32,7 +32,7 @@ final class DisplayBuildingSlotsTest extends TestCase
 
     public function testCanViewSlotsWithBuilding(): void
     {
-        $building = new Building("Test",30);
+        $building = new MockBuilding("Test",30);
         $building->setSlot(1);
         $buildingRepository = new MockBuildingRepository([$building]);
 
@@ -48,7 +48,7 @@ final class DisplayBuildingSlotsTest extends TestCase
 
     public function testPlayDoNotOwnCity(): void
     {
-        $building = new Building("Test",30);
+        $building = new MockBuilding("Test",30);
         $building->setSlot(0);
         $buildingRepository = new MockBuildingRepository([$building],false);
 

@@ -16,18 +16,13 @@ final class SimpleLocationFinder implements LocationFinder
     {
         $locationX = 0;
         $locationY = 0;
-
         do {
             $location = new Location($locationX, $locationY);
-
             $countCitiesAtLocation = $this->cityRepository->countAtLocation($location);
-
             if ($countCitiesAtLocation !== 0) {
                 $location = null;
             }
-
             $locationX++;
-
             if ($locationX > $this->maxWidth) {
                 $locationX = 0;
                 $locationY++;

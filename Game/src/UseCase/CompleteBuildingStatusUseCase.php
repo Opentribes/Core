@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\UseCase;
 
-use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Enum\BuildStatus;
 use OpenTribes\Core\Message\CompleteBuildingStatusMessage;
 use OpenTribes\Core\Repository\BuildingRepository;
+use OpenTribes\Core\Tests\Mock\Entity\MockBuilding;
 
 final class CompleteBuildingStatusUseCase
 {
@@ -21,7 +21,7 @@ final class CompleteBuildingStatusUseCase
             $message->getLocationX(),
             $message->getLocationY()
         );
-        /** @var Building $building */
+        /** @var MockBuilding $building */
         foreach ($buildings as $building) {
             if ($building->getStatus() === BuildStatus::default) {
                 continue;

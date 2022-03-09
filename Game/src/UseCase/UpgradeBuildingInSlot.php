@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\UseCase;
 
-use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Enum\BuildStatus;
 use OpenTribes\Core\Factory\BuildingFactory;
 use OpenTribes\Core\Message\UpgradeBuildingInSlotMessage;
 use OpenTribes\Core\Repository\BuildingRepository;
 use OpenTribes\Core\Repository\CityRepository;
+use OpenTribes\Core\Tests\Mock\Entity\MockBuilding;
 use OpenTribes\Core\Utils\Location;
 use OpenTribes\Core\View\BuildingView;
 
@@ -46,7 +46,7 @@ final class UpgradeBuildingInSlot
 
     private function createBuilding(
         UpgradeBuildingInSlotMessage $message
-    ): Building {
+    ): MockBuilding {
         $city = $this->cityRepository->findAtLocation(new Location($message->getLocationX(), $message->getLocationY()));
 
         $buildingInSlot = $this->buildingFactory->create(

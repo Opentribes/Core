@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Tests\UseCase;
 
-use OpenTribes\Core\Entity\Building;
+use OpenTribes\Core\Tests\Mock\Entity\MockBuilding;
 use OpenTribes\Core\Tests\Mock\Message\MockListAvailableBuildingsMessage;
 use OpenTribes\Core\Tests\Mock\Repository\MockBuildingRepository;
 use OpenTribes\Core\UseCase\ListAvailableBuildings;
@@ -24,7 +24,7 @@ final class ListAvailableBuildingsTest extends TestCase
 
     public function testAllBuildingsAreShown(): void
     {
-        $mockBuildingRepository = new MockBuildingRepository([new Building('test',30),new Building('test2',30)]);
+        $mockBuildingRepository = new MockBuildingRepository([new MockBuilding('test',30),new MockBuilding('test2',30)]);
         $message = new MockListAvailableBuildingsMessage();
         $useCase = new ListAvailableBuildings($mockBuildingRepository);
         $useCase->execute($message);

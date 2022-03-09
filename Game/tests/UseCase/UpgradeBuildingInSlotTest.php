@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Tests\UseCase;
 
-use OpenTribes\Core\Entity\Building;
-use OpenTribes\Core\Entity\City;
+use OpenTribes\Core\Tests\Mock\Entity\MockCity;
 use OpenTribes\Core\Entity\CityCollection;
 use OpenTribes\Core\Enum\BuildStatus;
 use OpenTribes\Core\Factory\BuildingFactory;
+use OpenTribes\Core\Tests\Mock\Entity\MockBuilding;
 use OpenTribes\Core\Tests\Mock\Message\MockUpgradeBuildingInSlotMessage;
 use OpenTribes\Core\Tests\Mock\Repository\MockBuildingRepository;
 use OpenTribes\Core\Tests\Mock\Repository\MockCityRepository;
@@ -21,7 +21,7 @@ final class UpgradeBuildingInSlotTest extends TestCase
 
     public function testCanUpgradeBuildingOnSlot(): void
     {
-        $lumberjack = new Building('lumberjack',30);
+        $lumberjack = new MockBuilding('lumberjack',30);
         $lumberjack->setSlot('1');
 
         $buildingFactory = new BuildingFactory();
@@ -40,7 +40,7 @@ final class UpgradeBuildingInSlotTest extends TestCase
         $buildingRepository = new MockBuildingRepository();
         $cityRepository = new MockCityRepository();
         $cityRepository->setCities(new CityCollection([
-            new City(new Location(1,1))
+            new MockCity(new Location(1,1))
         ]));
         $buildingFactory = new BuildingFactory();
         $message = new MockUpgradeBuildingInSlotMessage('lumberjack');
@@ -52,7 +52,7 @@ final class UpgradeBuildingInSlotTest extends TestCase
     }
     public function testMaximumLevelReached(): void
     {
-        $lumberjack = new Building('lumberjack',30);
+        $lumberjack = new MockBuilding('lumberjack',30);
         $lumberjack->setSlot('1');
         $lumberjack->setLevel(30);
 
@@ -74,7 +74,7 @@ final class UpgradeBuildingInSlotTest extends TestCase
 
         $cityRepository = new MockCityRepository();
         $cityRepository->setCities(new CityCollection([
-            new City(new Location(1,1))
+            new MockCity(new Location(1,1))
         ]));
         $message = new MockUpgradeBuildingInSlotMessage('lumberjack');
         $useCase = new UpgradeBuildingInSlot($buildingRepository,$cityRepository,$factory);

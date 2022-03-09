@@ -8,6 +8,7 @@ use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Entity\BuildingCollection;
 use OpenTribes\Core\Repository\BuildingRepository;
 
+
 final class MockBuildingRepository implements BuildingRepository
 {
     public function __construct(private array $collection = [],private bool $userCanBuildAtLocation = true)

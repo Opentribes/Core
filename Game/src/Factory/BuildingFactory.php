@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Factory;
 
-use OpenTribes\Core\Entity\Building;
+use OpenTribes\Core\Tests\Mock\Entity\MockBuilding;
 
 final class BuildingFactory
 {
-    public function create(string $buildingName): Building
+    public function create(string $buildingName): MockBuilding
     {
-        return new Building($buildingName, 30);
+        return new MockBuilding($buildingName, 30);
     }
 }
