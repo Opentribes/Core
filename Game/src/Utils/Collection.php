@@ -92,4 +92,8 @@ abstract class Collection implements \Countable, \ArrayAccess, \Iterator
     {
         return array_filter($this->collection, $function);
     }
+
+    public function getElements():array{
+        return $this->collection;
+    }
 }

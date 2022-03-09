@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Tests\Mock\Entity;
 
-use DateTimeInterface;
+use OpenTribes\Core\Entity\Building;
 use OpenTribes\Core\Entity\BuildingCollection;
 use OpenTribes\Core\Entity\City;
 use OpenTribes\Core\Entity\User;
-use OpenTribes\Core\Tests\Mock\Entity\MockBuilding;
-use OpenTribes\Core\Utils\Collectible;
 use OpenTribes\Core\Utils\Location;
 
 final class MockCity implements City
@@ -18,7 +16,7 @@ final class MockCity implements City
      private int $locationY;
 
      private BuildingCollection $buildings;
-     private $user;
+     private User $user;
 
      public function __construct(private Location $location)
      {
@@ -46,7 +44,7 @@ final class MockCity implements City
 
      public function setBuildings(BuildingCollection $buildings): void
      {
-         /** @var MockBuilding $building */
+         /** @var Building $building */
          foreach ($buildings as $building) {
              $building->setCity($this);
          }
