@@ -10,15 +10,18 @@ use OpenTribes\Core\Utils\Collectible;
 
 final class BuildingView implements Collectible
 {
-    public string $name = '';
-    public BuildStatus $status;
-    public int $level = 0;
+    public function __construct(
+        public readonly string $name,
+        public readonly int $level,
+        public readonly BuildStatus $status)
+    {
+    }
+
     public static function fromEntity(Building $building): self
     {
-        $view = new self();
-        $view->name = $building->getName();
-        $view->level = $building->getLevel();
-        $view->status = $building->getStatus();
-        return $view;
+        return new self($building->getName(),
+            $building->getLevel(),
+            $building->getStatus()
+        );
     }
 }

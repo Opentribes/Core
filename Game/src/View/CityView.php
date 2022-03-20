@@ -9,13 +9,12 @@ use OpenTribes\Core\Utils\Location;
 
 final class CityView
 {
-    public Location $location;
+    public function __construct(public readonly Location $location)
+    {
+    }
 
     public static function fromEntity(City $city): self
     {
-        $view = new self();
-        $view->location = $city->getLocation();
-
-        return $view;
+        return new self($city->getLocation());
     }
 }
