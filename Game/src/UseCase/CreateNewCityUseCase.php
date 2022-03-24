@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\UseCase;
 
-use OpenTribes\Core\Tests\Mock\Entity\MockCity;
+
 use OpenTribes\Core\Message\CreateNewCityMessage;
 use OpenTribes\Core\Repository\CityRepository;
 use OpenTribes\Core\Service\LocationFinder;
@@ -21,7 +21,7 @@ final class CreateNewCityUseCase
     public function process(CreateNewCityMessage $message): void
     {
         $location = $this->locationFinder->findUnusedLocation();
-        $city = new MockCity($location);
+        $city = $this->cityRepository->create($location);
 
         if ($this->cityRepository->add($city)) {
             $message->setCity(CityView::fromEntity($city));

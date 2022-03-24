@@ -13,5 +13,4 @@ interface CreateNewCityMessage
     public function activateCreated(): void;
 
     public function setCity(CityView $city): void;
-    public function getCity(): CityView;
 }

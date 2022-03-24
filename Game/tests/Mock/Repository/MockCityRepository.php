@@ -7,6 +7,7 @@ use OpenTribes\Core\Entity\City;
 use OpenTribes\Core\Entity\CityCollection;
 use OpenTribes\Core\Exception\InvalidLocation;
 use OpenTribes\Core\Repository\CityRepository;
+use OpenTribes\Core\Tests\Mock\Entity\MockCity;
 use OpenTribes\Core\Utils\Location;
 
 final class MockCityRepository implements CityRepository
@@ -60,6 +61,11 @@ final class MockCityRepository implements CityRepository
             throw new InvalidLocation(sprintf("The Location X:%d/Y:%d is invalid",$location->getX(),$location->getY()));
         }
         return $city;
+    }
+
+    public function create(Location $location): City
+    {
+      return new MockCity($location);
     }
 
 

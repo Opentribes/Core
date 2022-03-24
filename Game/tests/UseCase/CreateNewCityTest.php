@@ -50,7 +50,7 @@ final class CreateNewCityTest extends TestCase
         $useCase->process($message);
         $expectedLocation = new Location(10,10);
         $this->assertTrue($message->cityCreated());
-        $this->assertEquals($expectedLocation,$message->getCity()->location);
+        $this->assertEquals($expectedLocation,$message->city->location);
     }
     public function testCityCreatedOnDifferentLocation():void{
         $cityRepository = new MockCityRepository(0,true);
@@ -60,6 +60,6 @@ final class CreateNewCityTest extends TestCase
         $message = new MockCreateNewCityMessage();
         $useCase->process($message);
         $this->assertTrue($message->cityCreated());
-        $this->assertEquals($expectedLocation,$message->getCity()->location);
+        $this->assertEquals($expectedLocation,$message->city->location);
     }
 }
