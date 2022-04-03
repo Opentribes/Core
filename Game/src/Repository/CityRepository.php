@@ -11,7 +11,7 @@ interface CityRepository
 {
     public function countByUsername(string $username): int;
 
-    public function add(City $city): bool;
+    public function add(City $city): void;
     public function create(Location $location): City;
     public function countAtLocation(Location $location): int;
     public function findAtLocation(Location $location): City;

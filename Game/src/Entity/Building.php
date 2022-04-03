@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace OpenTribes\Core\Entity;
@@ -28,9 +29,7 @@ interface Building extends Collectible
 
     public function getMaximumLevel(): int;
 
-
     public function getCity(): City;
 
     public function setCity(City $city): void;
-
 }

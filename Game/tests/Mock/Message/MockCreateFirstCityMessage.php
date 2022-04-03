@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Tests\Mock\Message;
 
-use OpenTribes\Core\Message\CreateNewCityMessage;
+use OpenTribes\Core\Message\CreateFirstCityMessage;
 use OpenTribes\Core\View\CityView;
 
-final class MockCreateNewCityMessage implements CreateNewCityMessage
+final class MockCreateFirstCityMessage implements CreateFirstCityMessage
 {
     private bool $created = false;
-    public CityView $city;
+    public ?CityView $city = null;
     public function activateCreated(): void
     {
         $this->created = true;
@@ -24,6 +24,11 @@ final class MockCreateNewCityMessage implements CreateNewCityMessage
     public function setCity(CityView $city):void
     {
          $this->city = $city;
+    }
+
+    public function getUsername(): string
+    {
+        return 'testUser';
     }
 
 

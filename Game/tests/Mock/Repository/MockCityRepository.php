@@ -5,6 +5,7 @@ namespace OpenTribes\Core\Tests\Mock\Repository;
 
 use OpenTribes\Core\Entity\City;
 use OpenTribes\Core\Entity\CityCollection;
+use OpenTribes\Core\Exception\FailedToAddCity;
 use OpenTribes\Core\Exception\InvalidLocation;
 use OpenTribes\Core\Repository\CityRepository;
 use OpenTribes\Core\Tests\Mock\Entity\MockCity;
@@ -26,9 +27,13 @@ final class MockCityRepository implements CityRepository
         $this->cities = $cities;
     }
 
-    public function add(City $city): bool
+    public function add(City $city): void
     {
-        return $this->added;
+         if($this->added){
+             return;
+
+         }
+        throw new FailedToAddCity();
     }
 
     public function countByUsername(string $username): int
