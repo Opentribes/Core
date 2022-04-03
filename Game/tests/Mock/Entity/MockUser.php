@@ -15,4 +15,9 @@ final class MockUser implements User
         return  $this->cityCollection;
     }
 
+    public function getUsername(): string
+    {
+       return '';
+    }
+
 }

@@ -9,4 +9,5 @@ use OpenTribes\Core\Utils\Collectible;
 interface User extends Collectible
 {
     public function getCities(): CityCollection;
+    public function getUsername(): string;
 }
