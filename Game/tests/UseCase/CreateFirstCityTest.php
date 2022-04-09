@@ -51,7 +51,7 @@ final class CreateFirstCityTest extends TestCase
     
     public function testUserHasCities(): void
     {
-        $cityCollection = new CityCollection([new MockCity(new Location(1,2))]);
+        $cityCollection = new CityCollection(...[new MockCity(new Location(1,2))]);
         $mockUser = new MockUser($cityCollection);
         $userRepository = new MockUserRepository($mockUser);
         $useCase = $this->getUseCase(userRepository:$userRepository);

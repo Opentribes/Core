@@ -17,12 +17,12 @@ final class MockBuildingRepository implements BuildingRepository
 
     public function findAllAtLocation(int $locationX, int $locationY): BuildingCollection
     {
-        return new BuildingCollection($this->collection);
+        return new BuildingCollection(...$this->collection);
     }
 
     public function findAvailable(): BuildingCollection
     {
-        return new BuildingCollection($this->collection);
+        return new BuildingCollection(...$this->collection);
     }
 
     public function userCanBuildAtLocation(int $locationX, int $locationY, string $username): bool

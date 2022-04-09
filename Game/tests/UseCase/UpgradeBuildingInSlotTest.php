@@ -39,7 +39,7 @@ final class UpgradeBuildingInSlotTest extends TestCase
 
         $buildingRepository = new MockBuildingRepository();
         $cityRepository = new MockCityRepository();
-        $cityRepository->setCities(new CityCollection([
+        $cityRepository->setCities(new CityCollection(...[
             new MockCity(new Location(1,1))
         ]));
         $buildingFactory = new BuildingFactory();
@@ -73,7 +73,7 @@ final class UpgradeBuildingInSlotTest extends TestCase
         $factory = new BuildingFactory();
 
         $cityRepository = new MockCityRepository();
-        $cityRepository->setCities(new CityCollection([
+        $cityRepository->setCities(new CityCollection(...[
             new MockCity(new Location(1,1))
         ]));
         $message = new MockUpgradeBuildingInSlotMessage('lumberjack');

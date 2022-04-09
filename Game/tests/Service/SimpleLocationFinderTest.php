@@ -22,7 +22,7 @@ final class SimpleLocationFinderTest extends TestCase
     {
         $mockCityRepository = new MockCityRepository();
         $mockCity = new MockCity(new Location(0,0));
-        $cityCollection = new CityCollection([$mockCity]);
+        $cityCollection = new CityCollection(...[$mockCity]);
         $mockCityRepository->setCities($cityCollection);
         $locationFinder = new SimpleLocationFinder($mockCityRepository,100);
         $expectedLocation = new Location(1,0);
@@ -33,7 +33,7 @@ final class SimpleLocationFinderTest extends TestCase
         $mockCityRepository = new MockCityRepository();
         $mockCity1 = new MockCity(new Location(0,0));
         $mockCity2 = new MockCity(new Location(1,0));
-        $cityCollection = new CityCollection([$mockCity1,$mockCity2]);
+        $cityCollection = new CityCollection(...[$mockCity1,$mockCity2]);
 
         $mockCityRepository->setCities($cityCollection);
         $locationFinder = new SimpleLocationFinder($mockCityRepository,100);
@@ -44,7 +44,7 @@ final class SimpleLocationFinderTest extends TestCase
         $mockCityRepository = new MockCityRepository();
         $mockCity1 = new MockCity(new Location(0,0));
         $mockCity2 = new MockCity(new Location(1,0));
-        $cityCollection = new CityCollection([$mockCity1,$mockCity2]);
+        $cityCollection = new CityCollection(...[$mockCity1,$mockCity2]);
 
         $mockCityRepository->setCities($cityCollection);
         $locationFinder = new SimpleLocationFinder($mockCityRepository,1);

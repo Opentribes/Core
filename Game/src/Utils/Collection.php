@@ -13,10 +13,8 @@ abstract class Collection implements \Countable, \ArrayAccess, \Iterator
     /**
      * @param array<Collectible> $collection
      */
-    public function __construct(protected array $collection = [])
-    {
-        $this->rewind();
-    }
+    protected array $collection = [];
+
 
     public function offsetExists(mixed $offset): bool
     {
