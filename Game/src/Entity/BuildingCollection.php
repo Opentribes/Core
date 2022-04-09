@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace OpenTribes\Core\Entity;
 
-use OpenTribes\Core\Tests\Mock\Entity\MockBuilding;
 use OpenTribes\Core\Utils\Collection;
 
 final class BuildingCollection extends Collection
 {
-    public function __construct(Building... $building)
+    public function __construct(Building ...$building)
     {
         $this->collection = $building;
     }
@@ -20,8 +19,8 @@ final class BuildingCollection extends Collection
 
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (!($value instanceof Building)) {
-            throw new \InvalidArgumentException($value . " is not instance of " . Building::class);
+        if (! ($value instanceof Building)) {
+            throw new \InvalidArgumentException($value . ' is not instance of ' . Building::class);
         }
         parent::offsetSet($offset, $value);
     }

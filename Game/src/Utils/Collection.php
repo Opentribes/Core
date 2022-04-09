@@ -8,13 +8,12 @@ use Closure;
 
 abstract class Collection implements \Countable, \ArrayAccess, \Iterator
 {
-    private int $position = 0;
 
     /**
      * @param array<Collectible> $collection
      */
     protected array $collection = [];
-
+    private int $position = 0;
 
     public function offsetExists(mixed $offset): bool
     {

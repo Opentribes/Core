@@ -8,7 +8,7 @@ use OpenTribes\Core\Utils\Collection;
 
 final class TileCollection extends Collection
 {
-    public function __construct(Tile...$tiles)
+    public function __construct(Tile ...$tiles)
     {
         $this->collection = $tiles;
     }
@@ -20,8 +20,8 @@ final class TileCollection extends Collection
 
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (!($value instanceof Tile)) {
-            throw new \InvalidArgumentException($value . " is not instance of " . Tile::class);
+        if (! ($value instanceof Tile)) {
+            throw new \InvalidArgumentException($value . ' is not instance of ' . Tile::class);
         }
         parent::offsetSet($offset, $value);
     }
@@ -30,5 +30,4 @@ final class TileCollection extends Collection
     {
         return parent::current();
     }
-
 }

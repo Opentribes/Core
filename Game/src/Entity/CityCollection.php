@@ -8,7 +8,7 @@ use OpenTribes\Core\Utils\Collection;
 
 final class CityCollection extends Collection
 {
-    public function __construct(City... $city)
+    public function __construct(City ...$city)
     {
         $this->collection = $city;
     }
@@ -19,8 +19,8 @@ final class CityCollection extends Collection
 
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (!($value instanceof City)) {
-            throw new \InvalidArgumentException($value . " is not instance of " . City::class);
+        if (! ($value instanceof City)) {
+            throw new \InvalidArgumentException($value . ' is not instance of ' . City::class);
         }
         parent::offsetSet($offset, $value);
     }

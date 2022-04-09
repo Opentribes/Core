@@ -8,7 +8,7 @@ use OpenTribes\Core\Utils\Collection;
 
 final class SlotViewCollection extends Collection
 {
-    public function __construct(SlotView... $building)
+    public function __construct(SlotView ...$building)
     {
         $this->collection = $building;
     }
@@ -20,8 +20,8 @@ final class SlotViewCollection extends Collection
 
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (!($value instanceof SlotView)) {
-            throw new \InvalidArgumentException($value . " is not instance of " . SlotView::class);
+        if (! ($value instanceof SlotView)) {
+            throw new \InvalidArgumentException($value . ' is not instance of ' . SlotView::class);
         }
         parent::offsetSet($offset, $value);
     }

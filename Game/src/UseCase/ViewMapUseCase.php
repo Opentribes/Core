@@ -12,7 +12,6 @@ use OpenTribes\Core\View\TileViewCollection;
 
 final class ViewMapUseCase
 {
-
     public function __construct(private MapTileRepository $mapTilesRepository)
     {
     }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace OpenTribes\Core\Message;
@@ -8,6 +9,6 @@ use OpenTribes\Core\View\MapView;
 
 interface ViewMapMessage
 {
-    public function getViewport():Viewport;
-    public function setMap(MapView $map);
+    public function getViewport(): Viewport;
+    public function setMap(MapView $map): void;
 }
