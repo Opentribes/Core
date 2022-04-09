@@ -8,7 +8,6 @@ use Closure;
 
 abstract class Collection implements \Countable, \ArrayAccess, \Iterator
 {
-
     /**
      * @param array<Collectible> $collection
      */
