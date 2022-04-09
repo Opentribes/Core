@@ -20,7 +20,7 @@ final class ViewMapUseCaseTest extends TestCase
     public function testCanShowMap(): void
     {
         $tilesRepository = new MockMapTileRepository();
-        $viewPort = new Viewport(new Location(1,1),3,3);
+        $viewPort = new Viewport(new Location(1, 1), 3, 3);
         $message = new MockViewMapMessage($viewPort);
         $useCase = new ViewMapUseCase($tilesRepository);
         $useCase->process($message);
@@ -30,20 +30,57 @@ final class ViewMapUseCaseTest extends TestCase
     public function testCanFindTilesInViewPort(): void
     {
         $tilesRepository = new MockMapTileRepository();
-        $viewPort = new Viewport(new Location(1,1),3,3);
+        $viewPort = new Viewport(new Location(1, 1), 3, 3);
         $message = new MockViewMapMessage($viewPort);
         $useCase = new ViewMapUseCase($tilesRepository);
         $useCase->process($message);
 
         $expectedArray = [
-            '0-0', '0-1', '0-2',  '1-0', '1-1', '1-2', '2-0', '2-1', '2-2',
+            '0-0',
+            '0-1',
+            '0-2',
+            '1-0',
+            '1-1',
+            '1-2',
+            '2-0',
+            '2-1',
+            '2-2',
         ];
 
         $tiles = $message->map->backgroundLayer;
         $actualArray = [];
-        foreach($tiles as $tile){
-            $actualArray[]=$tile->location->getY().'-'.$tile->location->getX();
+        foreach ($tiles as $tile) {
+            $actualArray[] = $tile->location->getY() . '-' . $tile->location->getX();
         }
-        $this->assertSame($expectedArray,$actualArray);
+        $this->assertSame($expectedArray, $actualArray);
+    }
+
+    public function testCanMoveViewPort(): void
+    {
+        $tilesRepository = new MockMapTileRepository(10, 10);
+        $viewPort = new Viewport(new Location(2, 2), 3, 3);
+
+        $message = new MockViewMapMessage($viewPort);
+        $useCase = new ViewMapUseCase($tilesRepository);
+        $useCase->process($message);
+
+        $expectedArray = [
+            '1-1',
+            '1-2',
+            '1-3',
+            '2-1',
+            '2-2',
+            '2-3',
+            '3-1',
+            '3-2',
+            '3-3'
+        ];
+
+        $tiles = $message->map->backgroundLayer;
+        $actualArray = [];
+        foreach ($tiles as $tile) {
+            $actualArray[] = $tile->location->getY() . '-' . $tile->location->getX();
+        }
+        $this->assertSame($expectedArray, $actualArray);
     }
 }
