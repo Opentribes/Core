@@ -9,5 +9,7 @@ use OpenTribes\Core\Utils\Location;
 
 interface Tile extends Collectible
 {
+    public function getData():string;
+    public function getId():string;
     public function getLocation(): Location;
 }

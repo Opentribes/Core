@@ -9,11 +9,11 @@ use OpenTribes\Core\Utils\Location;
 
 final class TileView
 {
-    public function __construct(public readonly Location $location)
+    public function __construct(public readonly string $id,public readonly string $data,public readonly Location $location)
     {
     }
     public static function createFromEntity(Tile $tile): self
     {
-        return new self($tile->getLocation());
+        return new self($tile->getId(),$tile->getData(),$tile->getLocation());
     }
 }

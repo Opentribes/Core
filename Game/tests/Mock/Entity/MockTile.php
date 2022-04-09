@@ -8,7 +8,8 @@ use OpenTribes\Core\Utils\Location;
 
 final class MockTile implements Tile
 {
-
+    private string $id = '';
+    private string $data = '';
     public function __construct(private Location $location)
     {
     }
@@ -17,5 +18,22 @@ final class MockTile implements Tile
     {
         return $this->location;
     }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getData(): string
+    {
+        return $this->data;
+    }
+
 
 }
