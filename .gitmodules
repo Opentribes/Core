@@ -1,0 +1,9 @@
+[submodule "Game"]
+	path = Game
+	url = git@github.com:Opentribes/Game.git
+	branch = main
+
+[submodule "Framework"]
+	path = Framework
+	url = git@github.com:Opentribes/Framework.git
+	branch = main
