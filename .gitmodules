@@ -2,3 +2,7 @@
 	path = Framework
 	url = git@github.com:Opentribes/Framework.git
 	branch = main
+[submodule "Game"]
+	path = Game
+	url = git@github.com:Opentribes/Game.git
+	branch = main
